@@ -4,7 +4,9 @@ const nextConfig = {
     images: {
       unoptimized: true,
     },
-    basePath: process.env.NODE_ENV === 'production' ? '/openmesh-cloud-visualizer' : '',
-  }
+    basePath: '/openmesh-cloud-visualizer',
+    assetPrefix: '/openmesh-cloud-visualizer/',
+    trailingSlash: true,
+}
   
-  export default nextConfig
+export default nextConfig
