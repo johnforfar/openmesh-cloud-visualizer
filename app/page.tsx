@@ -264,20 +264,20 @@ export default function Home() {
                 <g className="label-group">
                     <line 
                     x1={CENTER_X + baseRadius * 0.75} 
-                    y1={CENTER_Y - 290}    // Changed back to -290
+                    y1={CENTER_Y - 290}
                     x2={CENTER_X + baseRadius * 1.1} 
-                    y2={CENTER_Y - 340}    // Changed back to -340
+                    y2={CENTER_Y - 340}
                     stroke="#666666" 
                     strokeWidth={1}
                     />
                     <text 
                     x={CENTER_X + baseRadius * 1.1} 
-                    y={CENTER_Y - 350}     // Changed back to -350
+                    y={CENTER_Y - 350}
                     className="text-sm fill-gray-600"
                     textAnchor="start"
                     >
                     Openmesh Cloud
-                    <tspan x={CENTER_X + baseRadius * 1.1} y={CENTER_Y - 330} className="text-xs fill-gray-500">  // Changed back to -330
+                    <tspan x={CENTER_X + baseRadius * 1.1} y={CENTER_Y - 330} className="text-xs fill-gray-500"> 
                         {`${allocation}% Resources Allocated`}
                     </tspan>
                     </text>
