@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Slider } from "@/components/ui/slider"
 import { Label } from "@/components/ui/label"
+import { Github } from "lucide-react"
 
 interface Node {
   x: number
@@ -70,6 +71,18 @@ const ControlPanel = ({
         <div>{totalResources.storage} GB Storage</div>
       </div>
     </div>
+
+    <div className="pt-4 border-t mt-auto">
+      <a
+        href="https://github.com/johnforfar/openmesh-cloud-visualizer"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-md text-gray-700 dark:text-gray-300 transition-colors"
+      >
+        <Github size={20} />
+        Fork Me on GitHub
+      </a>
+    </div>
   </div>
 )
 
@@ -117,19 +130,19 @@ export default function Home() {
   const baseRadius = 300
   const xNodes = generateNodes(nodeCount, baseRadius, 50)
   const vmNodes = generateNodes(Math.floor(nodeCount * 0.6), baseRadius * 0.75, -50)
-  //const mobileViewBox = `-100 0 1400 800` // Zoomed in view for mobile
-  //const desktopViewBox = `0 0 ${CANVAS_WIDTH} ${CANVAS_HEIGHT}` // Original view
 
   const [viewBox, setViewBox] = useState(`0 0 ${CANVAS_WIDTH} ${CANVAS_HEIGHT}`)
 
   useEffect(() => {
-  const handleResize = () => {
-    setViewBox(window.innerWidth < 768 ? `-300 100 1800 600` : `0 0 ${CANVAS_WIDTH} ${CANVAS_HEIGHT}`)
-}
-  
-  handleResize()
-  window.addEventListener('resize', handleResize)
-  return () => window.removeEventListener('resize', handleResize)
+    const handleResize = () => {
+      setViewBox(window.innerWidth < 768 ? 
+        `200 100 800 600`
+        : `0 0 ${CANVAS_WIDTH} ${CANVAS_HEIGHT}`)
+    }
+    
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
   }, [CANVAS_WIDTH, CANVAS_HEIGHT])
   
   return (
@@ -146,18 +159,29 @@ export default function Home() {
 
       <div className="flex-1 flex flex-col">
         <Card className="flex-1 bg-white dark:bg-slate-900 rounded-none">
-          <CardHeader>
+          <CardHeader className="flex flex-row items-center justify-between">
+            <div className="flex-1" /> {/* Spacer */}
             <CardTitle className="text-center text-2xl md:text-3xl">The Openmesh Cloud Stack</CardTitle>
+            <div className="flex-1 flex justify-end">
+              <a
+                href="https://github.com/johnforfar/openmesh-cloud-visualizer"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
+              >
+                <Github size={24} />
+              </a>
+            </div>
           </CardHeader>
-          <CardContent className="h-[70vh] md:h-[calc(100vh-80px)] p-0 md:p-6">
-          <div className="w-full h-full flex items-center justify-center px-0">
-            <svg 
+          <CardContent className="h-[50vh] md:h-[calc(100vh-80px)] p-0 md:p-6">
+            <div className="w-full h-full flex items-center justify-center px-0">
+              <svg 
                 width="100%" 
                 height="100%" 
                 className="max-h-full w-full"
                 viewBox={viewBox}
                 preserveAspectRatio="xMidYMid meet"
-            >
+              >
                 <defs>
                   <linearGradient id="resourceGradient" x1="0" y1="0" x2="1" y2="0">
                     <stop offset="0%" stopColor="#22c55e" />
@@ -237,45 +261,45 @@ export default function Home() {
 
                 {/* Desktop Labels with pointer lines */}
                 <g className="hidden md:block">
-                  <g className="label-group">
+                <g className="label-group">
                     <line 
-                      x1={CENTER_X + baseRadius * 0.85} 
-                      y1={CENTER_Y - 50} 
-                      x2={CENTER_X + baseRadius * 1.2} 
-                      y2={CENTER_Y - 100}
-                      stroke="#666666" 
-                      strokeWidth={1}
+                    x1={CENTER_X + baseRadius * 0.75} 
+                    y1={CENTER_Y - 290}    // Changed back to -290
+                    x2={CENTER_X + baseRadius * 1.1} 
+                    y2={CENTER_Y - 340}    // Changed back to -340
+                    stroke="#666666" 
+                    strokeWidth={1}
                     />
                     <text 
-                      x={CENTER_X + baseRadius * 1.2} 
-                      y={CENTER_Y - 110} 
-                      className="text-sm fill-gray-600"
-                      textAnchor="start"
+                    x={CENTER_X + baseRadius * 1.1} 
+                    y={CENTER_Y - 350}     // Changed back to -350
+                    className="text-sm fill-gray-600"
+                    textAnchor="start"
                     >
-                      Openmesh Cloud
-                      <tspan x={CENTER_X + baseRadius * 1.2} y={CENTER_Y - 90} className="text-xs fill-gray-500">
+                    Openmesh Cloud
+                    <tspan x={CENTER_X + baseRadius * 1.1} y={CENTER_Y - 330} className="text-xs fill-gray-500">  // Changed back to -330
                         {`${allocation}% Resources Allocated`}
-                      </tspan>
+                    </tspan>
                     </text>
-                  </g>
+                </g>
 
                   <g className="label-group">
                     <line 
                       x1={CENTER_X - baseRadius * 0.75} 
-                      y1={CENTER_Y} 
+                      y1={CENTER_Y - 30} 
                       x2={CENTER_X - baseRadius * 1.1} 
-                      y2={CENTER_Y - 20}
+                      y2={CENTER_Y - 50}
                       stroke="#666666" 
                       strokeWidth={1}
                     />
                     <text 
                       x={CENTER_X - baseRadius * 1.1} 
-                      y={CENTER_Y - 30} 
+                      y={CENTER_Y - 60} 
                       className="text-sm fill-gray-600"
                       textAnchor="end"
                     >
                       Virtual Machine Layer
-                      <tspan x={CENTER_X - baseRadius * 1.1} y={CENTER_Y - 10} className="text-xs fill-gray-500">
+                      <tspan x={CENTER_X - baseRadius * 1.1} y={CENTER_Y - 40} className="text-xs fill-gray-500">
                         {`${Math.floor(nodeCount * 0.6)} VMs`}
                       </tspan>
                     </text>
@@ -308,7 +332,7 @@ export default function Home() {
                 <g className="md:hidden">
                   <text 
                     x={CENTER_X}
-                    y={CENTER_Y - 150}
+                    y={CENTER_Y - 280}
                     className="text-sm fill-gray-600"
                     textAnchor="middle"
                   >
@@ -320,7 +344,7 @@ export default function Home() {
 
                   <text 
                     x={CENTER_X}
-                    y={CENTER_Y}
+                    y={CENTER_Y - 50}
                     className="text-sm fill-gray-600"
                     textAnchor="middle"
                   >
@@ -332,7 +356,7 @@ export default function Home() {
 
                   <text 
                     x={CENTER_X}
-                    y={CENTER_Y + 150}
+                    y={CENTER_Y + 70}
                     className="text-sm fill-gray-600"
                     textAnchor="middle"
                   >
@@ -347,7 +371,7 @@ export default function Home() {
           </CardContent>
         </Card>
 
-        <div className="md:hidden p-4 bg-gray-50 dark:bg-gray-900">
+        <div className="md:hidden p-2 bg-gray-50 dark:bg-gray-900">
           <ControlPanel 
             nodeCount={nodeCount}
             setNodeCount={setNodeCount}

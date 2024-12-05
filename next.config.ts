@@ -4,8 +4,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: '/openmesh-cloud-visualizer',
-  assetPrefix: '/openmesh-cloud-visualizer/',
+  basePath: process.env.NODE_ENV === 'production' ? '/openmesh-cloud-visualizer' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/openmesh-cloud-visualizer/' : '',
 }
 
 export default nextConfig
