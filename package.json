@@ -2,6 +2,7 @@
   "name": "openmesh-cloud-visualizer",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://johnforfar.github.io/openmesh-cloud-visualizer",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
