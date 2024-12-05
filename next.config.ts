@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/openmesh-cloud-visualizer',
   images: {
     unoptimized: true,
   },
+  basePath: '/openmesh-cloud-visualizer',
+  assetPrefix: '/openmesh-cloud-visualizer/',
 }
 
-module.exports = nextConfig
+export default nextConfig
