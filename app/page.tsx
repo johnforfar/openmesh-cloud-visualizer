@@ -135,9 +135,9 @@ export default function Home() {
 
   useEffect(() => {
     const handleResize = () => {
-      setViewBox(window.innerWidth < 768 ? 
-        `200 100 800 600`
-        : `0 0 ${CANVAS_WIDTH} ${CANVAS_HEIGHT}`)
+        setViewBox(window.innerWidth < 768 ? 
+            `200 120 800 500`
+            : `0 0 ${CANVAS_WIDTH} ${CANVAS_HEIGHT}`)
     }
     
     handleResize()
@@ -159,7 +159,7 @@ export default function Home() {
 
       <div className="flex-1 flex flex-col">
         <Card className="flex-1 bg-white dark:bg-slate-900 rounded-none">
-          <CardHeader className="flex flex-row items-center justify-between">
+          <CardHeader className="flex flex-row items-center justify-between p-2 md:p-6">
             <div className="flex-1" /> {/* Spacer */}
             <CardTitle className="text-center text-2xl md:text-3xl">The Openmesh Cloud Stack</CardTitle>
             <div className="flex-1 flex justify-end">
@@ -174,8 +174,8 @@ export default function Home() {
             </div>
           </CardHeader>
           <CardContent className="h-[50vh] md:h-[calc(100vh-80px)] p-0 md:p-6">
-            <div className="w-full h-full flex items-center justify-center px-0">
-              <svg 
+          <div className="w-full h-full flex items-end justify-center px-0 md:items-center">
+          <svg 
                 width="100%" 
                 height="100%" 
                 className="max-h-full w-full"
@@ -193,8 +193,8 @@ export default function Home() {
                   </linearGradient>
                 </defs>
 
-                {/* Connection lines - Hidden on mobile */}
-                <g className="hidden md:block">
+                {/* Connection lines */}
+                <g>
                   {xNodes.map((xNode, i) => 
                     vmNodes.map((vm, j) => {
                       if ((i + j) % 3 === 0) {
@@ -371,7 +371,7 @@ export default function Home() {
           </CardContent>
         </Card>
 
-        <div className="md:hidden p-2 bg-gray-50 dark:bg-gray-900">
+        <div className="md:hidden p-2 -mt-2 bg-gray-50 dark:bg-gray-900">
           <ControlPanel 
             nodeCount={nodeCount}
             setNodeCount={setNodeCount}
